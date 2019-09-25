@@ -25,8 +25,6 @@
 		<script type="module">
 			import * as THREE from './build/three.module.js';
 			import { GUI } from './libs/dat.gui.module.js';
-			import { OrbitControls } from './controls/OrbitControls.js';
-			import { TransformControls } from './controls/TransformControls.js';
 			var camera, scene, renderer,orbit,control;
 			var plane;
 			var mouse, raycaster, isShiftDown = false;
@@ -88,14 +86,14 @@
 				renderer.setSize( window.innerWidth, window.innerHeight );
 				
 
-				orbit = new OrbitControls( camera, renderer.domElement );
-				orbit.update();
-				orbit.addEventListener( 'change', render );
-				control = new TransformControls( camera, renderer.domElement );
-				control.addEventListener( 'change', render );
-				control.addEventListener( 'dragging-changed', function ( event ) {
-					orbit.enabled = ! event.value;
-				} );
+				// orbit = new OrbitControls( camera, renderer.domElement );
+				// orbit.update();
+				// orbit.addEventListener( 'change', render );
+				// control = new TransformControls( camera, renderer.domElement );
+				// control.addEventListener( 'change', render );
+				// control.addEventListener( 'dragging-changed', function ( event ) {
+				// 	orbit.enabled = ! event.value;
+				// } );
 
 				var gui = new GUI();
 				
@@ -123,7 +121,7 @@
 				raycaster.setFromCamera( mouse, camera );
 				var intersects = raycaster.intersectObjects( objects );
 				if ( intersects.length > 0 ) {
-					var intersect = intersects[ 0 ];
+					var intersect = intersects[ 0 ];					
 					rollOverMesh.position.copy( intersect.point ).add( intersect.face.normal );
 					rollOverMesh.position.divideScalar( 50 ).floor().multiplyScalar( 50 ).addScalar( 25 );
 				}
